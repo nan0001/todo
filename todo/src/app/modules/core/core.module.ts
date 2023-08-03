@@ -7,6 +7,7 @@ import { ItemInputComponent } from './components/item-input/item-input.component
 import { MainComponent } from './components/main/main.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { CrossDirective } from './directives/cross.directive';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
     ItemInputComponent,
     MainComponent,
     TodoListComponent,
+    CrossDirective,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],
   exports: [HeaderComponent, FooterComponent, MainComponent],

@@ -23,4 +23,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
+  public changeItemStatus(item: TodoItemInterface): void {
+    this.todoservice.changeItemStatus(item);
+  }
 }

@@ -19,4 +19,12 @@ export class TodoService {
     this.todolist = [...this.todolist, item];
     this.todolistSrc.next(this.todolist);
   }
+
+  public changeItemStatus(item: TodoItemInterface): void {
+    item.status === 'done'
+      ? (item.status = 'in progress')
+      : (item.status = 'done');
+
+    this.todolistSrc.next([...this.todolist]);
+  }
 }
