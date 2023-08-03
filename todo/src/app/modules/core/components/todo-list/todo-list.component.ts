@@ -27,4 +27,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public changeItemStatus(item: TodoItemInterface): void {
     this.todoservice.changeItemStatus(item);
   }
+
+  public removeItem(item: TodoItemInterface): void {
+    this.todoservice.removeItem(item);
+  }
 }

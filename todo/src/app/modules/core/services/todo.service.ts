@@ -27,4 +27,10 @@ export class TodoService {
 
     this.todolistSrc.next([...this.todolist]);
   }
+
+  public removeItem(item: TodoItemInterface): void {
+    const itemIndex = this.todolist.findIndex(val => val === item);
+    this.todolist.splice(itemIndex, 1);
+    this.todolistSrc.next([...this.todolist]);
+  }
 }

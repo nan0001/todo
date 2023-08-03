@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-content>
-    <ul>
-      <li *ngFor="let item of todolist">
+    <ul class="list">
+      <li class="list__item" *ngFor="let item of todolist">
         <mat-checkbox
           color="primary"
           [checked]="item.status === 'done'"
@@ -9,6 +9,13 @@
           (change)="changeItemStatus(item)"
           >{{ item.task }}</mat-checkbox
         >
+        <button
+          mat-icon-button
+          aria-label="Remove item"
+          class="remove-btn"
+          (click)="removeItem(item)">
+          <mat-icon>backspace</mat-icon>
+        </button>
       </li>
     </ul>
   </mat-card-content>
