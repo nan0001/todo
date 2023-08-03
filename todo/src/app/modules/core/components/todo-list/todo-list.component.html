@@ -1,7 +1,17 @@
 <mat-card>
   <mat-card-content>
-    <ul class="list">
-      <li class="list__item" *ngFor="let item of todolist">
+    <ul
+      class="list"
+      cdkDropList
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListData]="todolist"
+      [id]="listId"
+      [cdkDropListConnectedTo]="secondListId">
+      <li
+        class="list__item"
+        *ngFor="let item of todolist"
+        draggable="true"
+        cdkDrag>
         <mat-checkbox
           color="primary"
           [checked]="item.status === 'done'"
