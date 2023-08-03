@@ -1,0 +1,16 @@
+<form (submit)="onSubmit($event)" class="input-form">
+  <mat-form-field>
+    <mat-label>Task</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="itemInput"
+      placeholder="Enter some task" />
+    <mat-error *ngIf="itemInput.hasError('required')">
+      Enter some task before submitting
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" class="add-btn">
+    Add task
+  </button>
+</form>

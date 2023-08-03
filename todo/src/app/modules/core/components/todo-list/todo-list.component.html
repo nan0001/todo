@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-content>
+    <ul>
+      <li *ngFor="let item of todolist">
+        <mat-checkbox color="primary" [checked]="item.status === 'done'">{{
+          item.task
+        }}</mat-checkbox>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>
