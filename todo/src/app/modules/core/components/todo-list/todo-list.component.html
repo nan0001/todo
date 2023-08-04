@@ -1,5 +1,17 @@
 <mat-card>
   <mat-card-content>
+    <div class="sorting">
+      <button
+        mat-icon-button
+        aria-label="Edit item"
+        class="btn"
+        (click)="changeSort()">
+        <mat-icon>sort_by_alpha</mat-icon>
+      </button>
+      <mat-icon class="icon" *ngIf="isSortingActive">{{
+        sortOrder === 'asc' ? 'arrow_upward' : 'arrow_downward'
+      }}</mat-icon>
+    </div>
     <ul
       class="list"
       cdkDropList
@@ -13,27 +25,6 @@
         draggable="true"
         cdkDrag>
         <app-todo-item [item]="item"></app-todo-item>
-        <!-- <mat-checkbox
-          color="primary"
-          [checked]="item.status === 'done'"
-          [appCross]="item.status"
-          (change)="changeItemStatus(item)"
-          >{{ item.task }}</mat-checkbox
-        >
-        <button
-          mat-icon-button
-          aria-label="Edit item"
-          class="btn"
-          (click)="editItem(item)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          aria-label="Remove item"
-          class="btn"
-          (click)="removeItem(item)">
-          <mat-icon>backspace</mat-icon>
-        </button> -->
       </li>
     </ul>
   </mat-card-content>

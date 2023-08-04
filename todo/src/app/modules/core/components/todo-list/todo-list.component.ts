@@ -20,6 +20,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public todolist: TodoItemInterface[] = [];
   public listId = '';
   public secondListId: string[] = [];
+  public isSortingActive = false;
+  public sortOrder: 'asc' | 'desc' = 'asc';
 
   constructor(private todoservice: TodoService) {}
 
@@ -28,6 +30,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
       this.todolist = list.filter(val =>
         this.isActiveList ? val.status === 'in progress' : val.status === 'done'
       );
+      this.sortItemsArray();
     });
     this.listId = this.isActiveList ? 'todoList' : 'doneList';
     this.secondListId = this.isActiveList ? ['doneList'] : ['todoList'];
@@ -38,6 +41,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   public drop(event: CdkDragDrop<TodoItemInterface[]>) {
+    this.isSortingActive = false;
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -55,5 +59,27 @@ export class TodoListComponent implements OnInit, OnDestroy {
         event.container.data[event.currentIndex]
       );
     }
+  }
+
+  public sortItemsArray(): void {
+    if (this.isSortingActive) {
+      this.todolist.sort((a, b) => {
+        if (this.sortOrder === 'asc') {
+          return a.task.localeCompare(b.task);
+        }
+        return b.task.localeCompare(a.task);
+      });
+    }
+  }
+
+  public changeSort(): void {
+    if (!this.isSortingActive) {
+      this.isSortingActive = !this.isSortingActive;
+      this.sortOrder = 'asc';
+    } else {
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    }
+
+    this.sortItemsArray();
   }
 }
