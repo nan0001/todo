@@ -37,14 +37,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  public changeItemStatus(item: TodoItemInterface): void {
-    this.todoservice.changeItemStatus(item);
-  }
-
-  public removeItem(item: TodoItemInterface): void {
-    this.todoservice.removeItem(item);
-  }
-
   public drop(event: CdkDragDrop<TodoItemInterface[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(

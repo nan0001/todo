@@ -33,4 +33,9 @@ export class TodoService {
     this.todolist.splice(itemIndex, 1);
     this.todolistSrc.next([...this.todolist]);
   }
+
+  public editItem(item: TodoItemInterface, newValue: string): void {
+    item.task = newValue;
+    this.todolistSrc.next([...this.todolist]);
+  }
 }

@@ -12,7 +12,8 @@
         *ngFor="let item of todolist"
         draggable="true"
         cdkDrag>
-        <mat-checkbox
+        <app-todo-item [item]="item"></app-todo-item>
+        <!-- <mat-checkbox
           color="primary"
           [checked]="item.status === 'done'"
           [appCross]="item.status"
@@ -21,11 +22,18 @@
         >
         <button
           mat-icon-button
+          aria-label="Edit item"
+          class="btn"
+          (click)="editItem(item)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
           aria-label="Remove item"
-          class="remove-btn"
+          class="btn"
           (click)="removeItem(item)">
           <mat-icon>backspace</mat-icon>
-        </button>
+        </button> -->
       </li>
     </ul>
   </mat-card-content>
