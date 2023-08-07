@@ -10,7 +10,8 @@ body {
 
 h1,
 p,
-ul {
+ul,
+h3 {
   padding: 0;
   margin: 0;
 }
@@ -18,3 +19,44 @@ ul {
 li{
   list-style: none;
 }
+
+.mdc-text-field {
+  padding: 0 10px !important;
+}
+
+.mat-mdc-form-field-infix{
+  min-height: auto;
+}
+
+.mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+  padding-top: 20px;
+  padding-bottom: 2px;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+  border-bottom: none;
+}
+
+.mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.list__item {
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+  .mat-mdc-form-field-input-control.mat-mdc-form-field-input-control{
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.input-form{
+  .mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after{
+    content: '';
+  }
+}
+
+
