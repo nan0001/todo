@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { TodoService } from '../../services/todo.service';
 import { Subscription } from 'rxjs';
-import { TodoItemInterface } from '../../models/todo-item.model';
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { TodoItemInterface } from '../../models/todo-item.model';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo-list',

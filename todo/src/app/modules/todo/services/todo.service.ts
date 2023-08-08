@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TodoItemInterface } from '../models/todo-item.model';
+import { TodoItemInterface } from '../../todo/models/todo-item.model';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({

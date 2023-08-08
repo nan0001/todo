@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TodoItemInterface } from '../../models/todo-item.model';
-import { TodoService } from '../../services/todo.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { TodoItemInterface } from '../../models/todo-item.model';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo-item',

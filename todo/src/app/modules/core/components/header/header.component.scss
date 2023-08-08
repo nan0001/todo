@@ -1,9 +1,13 @@
 .wrapper{
   padding: 20px 150px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .title {
   font-weight: 600;
   margin: 0;
   color: gray;
+  font-size: 20px;
+  text-decoration: none;
 }

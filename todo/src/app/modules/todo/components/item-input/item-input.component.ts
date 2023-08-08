@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { TodoService } from '../../services/todo.service';
 import { TodoItemInterface } from '../../models/todo-item.model';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-item-input',

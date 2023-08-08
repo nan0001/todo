@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './modules/core/core.module';
 import { StoreModule } from '@ngrx/store';
+import { MaterialModule } from './modules/material/material.module';
+import { TodoModule } from './modules/todo/todo.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +17,8 @@ import { StoreModule } from '@ngrx/store';
     BrowserAnimationsModule,
     CoreModule,
     StoreModule.forRoot({}, {}),
+    MaterialModule,
+    TodoModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
