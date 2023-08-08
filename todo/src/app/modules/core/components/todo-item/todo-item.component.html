@@ -1,0 +1,48 @@
+<ng-container>
+  <mat-checkbox
+    *ngIf="!editMode; else editInput"
+    class="checkbox"
+    color="primary"
+    [checked]="item.status === 'done'"
+    [appCross]="item.status"
+    (change)="changeItemStatus(item, $event)"
+    >{{ item.task }}</mat-checkbox
+  >
+  <ng-template #editInput>
+    <form [formGroup]="editForm" (submit)="editItem(item)" class="edit">
+      <mat-form-field class="edit__input">
+        <input matInput placeholder="Edit task" formControlName="task" />
+      </mat-form-field>
+      <button
+        mat-icon-button
+        aria-label="Edit item"
+        class="btn"
+        (click)="editItem(item)">
+        <mat-icon>done</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        aria-label="Edit item"
+        class="btn"
+        (click)="enterEditMode()">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </form>
+  </ng-template>
+  <button
+    *ngIf="!editMode"
+    mat-icon-button
+    aria-label="Edit item"
+    class="btn"
+    (click)="enterEditMode()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button
+    *ngIf="!editMode"
+    mat-icon-button
+    aria-label="Remove item"
+    class="btn"
+    (click)="removeItem(item)">
+    <mat-icon>backspace</mat-icon>
+  </button>
+</ng-container>

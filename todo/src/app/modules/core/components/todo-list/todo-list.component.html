@@ -1,0 +1,34 @@
+<mat-card class="container">
+  <mat-card-content>
+    <div class="sorting">
+      <button
+        mat-icon-button
+        aria-label="Edit item"
+        class="btn"
+        (click)="changeSort()">
+        <mat-icon>sort_by_alpha</mat-icon>
+      </button>
+      <mat-icon class="icon" *ngIf="isSortingActive">{{
+        sortOrder === 'asc' ? 'arrow_upward' : 'arrow_downward'
+      }}</mat-icon>
+    </div>
+    <ul
+      class="list"
+      cdkDropList
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListData]="todolist"
+      [id]="listId"
+      [cdkDropListConnectedTo]="secondListId">
+      <li
+        class="list__item"
+        *ngFor="let item of todolist"
+        draggable="true"
+        cdkDrag>
+        <app-todo-item
+          [item]="item"
+          (checkboxChecked)="animateItem($event)"></app-todo-item>
+        <div class="list__divider"></div>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

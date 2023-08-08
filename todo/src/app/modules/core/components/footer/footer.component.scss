@@ -1,0 +1,14 @@
+.wrapper{
+  padding: 20px 150px;
+  color: lightgray;
+  font-size: 14px;
+
+  .link {
+    color: lightgray;
+    outline: none;
+
+    &:hover {
+      color: gray;
+    }
+  }
+}

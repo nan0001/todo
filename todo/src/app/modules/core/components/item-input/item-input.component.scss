@@ -1,0 +1,17 @@
+:host {
+  width: 40%;
+}
+
+.input-form {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+
+  .mat-mdc-form-field {
+    flex-grow: 1;
+  }
+}
+
+.add-btn {
+  height: 46px;
+}
