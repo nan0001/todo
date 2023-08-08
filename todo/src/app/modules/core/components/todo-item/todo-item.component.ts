@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TodoItemInterface } from '../../models/todo-item.model';
 import { TodoService } from '../../services/todo.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-todo-item',
@@ -10,6 +11,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class TodoItemComponent implements OnInit {
   @Input() item!: TodoItemInterface;
+  @Output() checkboxChecked = new EventEmitter<{
+    element: HTMLElement;
+    item: TodoItemInterface;
+  }>();
 
   public editMode = false;
   public editForm = this.fb.group({
@@ -25,8 +30,15 @@ export class TodoItemComponent implements OnInit {
     this.editForm.controls.task.setValue(this.item?.task);
   }
 
-  public changeItemStatus(item: TodoItemInterface): void {
-    this.todoservice.changeItemStatus(item);
+  public changeItemStatus(
+    item: TodoItemInterface,
+    event: MatCheckboxChange
+  ): void {
+    const eventDescription = {
+      element: event.source._elementRef.nativeElement,
+      item,
+    };
+    this.checkboxChecked.emit(eventDescription);
   }
 
   public removeItem(item: TodoItemInterface): void {

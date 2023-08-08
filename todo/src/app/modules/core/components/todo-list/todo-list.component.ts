@@ -82,4 +82,76 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
     this.sortItemsArray();
   }
+
+  private calculateDestinationXY(
+    element: HTMLElement,
+    targetField: HTMLElement
+  ): { x: number; y: number } {
+    const elemInitX = element.getClientRects()[0].x;
+    const elemInitY = element.getClientRects()[0].y;
+
+    const targetFieldCenterX = targetField.getClientRects()[0].x;
+    const targetFieldCenterY =
+      targetField.getClientRects()[0].y +
+      targetField.getClientRects()[0].height / 2;
+
+    const destinationX = targetFieldCenterX - elemInitX;
+    const destinationY =
+      targetFieldCenterY -
+      elemInitY -
+      element.getClientRects()[0].height +
+      element.offsetTop;
+
+    return { x: destinationX, y: destinationY };
+  }
+
+  public animateItem({
+    element,
+    item,
+  }: {
+    element: HTMLElement;
+    item: TodoItemInterface;
+  }): void {
+    const secondList = document.getElementById(
+      this.secondListId[0]
+    ) as HTMLElement;
+    const targetElem = element.parentElement as HTMLElement;
+    let leftStart = 0;
+    let topStart = targetElem.offsetTop;
+    const initialY = targetElem.offsetTop;
+    const { x: destinationX, y: destinationY } = this.calculateDestinationXY(
+      targetElem,
+      secondList
+    );
+
+    const moveBox = () => {
+      targetElem.style.position = 'absolute';
+      targetElem.style.zIndex = '9999';
+      targetElem.style.left = leftStart + 'px';
+      targetElem.style.top = topStart + 'px';
+
+      if (Math.abs(leftStart) < Math.abs(destinationX)) {
+        leftStart = destinationX > 0 ? leftStart + 5 : leftStart - 5;
+      }
+
+      if (
+        (topStart < destinationY && initialY < destinationY) ||
+        (topStart > destinationY && initialY > destinationY)
+      ) {
+        topStart = initialY < destinationY ? topStart + 5 : topStart - 5;
+      }
+
+      if (
+        Math.abs(leftStart) < Math.abs(destinationX) ||
+        (topStart < destinationY && initialY < destinationY) ||
+        (topStart > destinationY && initialY > destinationY)
+      ) {
+        requestAnimationFrame(moveBox);
+      } else {
+        this.todoservice.changeItemStatus(item);
+      }
+    };
+
+    requestAnimationFrame(moveBox);
+  }
 }
