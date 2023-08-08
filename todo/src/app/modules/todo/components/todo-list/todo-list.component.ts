@@ -123,6 +123,9 @@ export class TodoListComponent implements OnInit, OnDestroy {
       targetElem,
       secondList
     );
+    const framesCount = 30;
+    const stepX = Math.abs(destinationX) / framesCount;
+    const stepY = Math.abs(destinationY - initialY) / framesCount;
 
     const moveBox = () => {
       targetElem.style.position = 'absolute';
@@ -131,14 +134,15 @@ export class TodoListComponent implements OnInit, OnDestroy {
       targetElem.style.top = topStart + 'px';
 
       if (Math.abs(leftStart) < Math.abs(destinationX)) {
-        leftStart = destinationX > 0 ? leftStart + 5 : leftStart - 5;
+        leftStart = destinationX > 0 ? leftStart + stepX : leftStart - stepX;
       }
 
       if (
         (topStart < destinationY && initialY < destinationY) ||
         (topStart > destinationY && initialY > destinationY)
       ) {
-        topStart = initialY < destinationY ? topStart + 5 : topStart - 5;
+        topStart =
+          initialY < destinationY ? topStart + stepY : topStart - stepY;
       }
 
       if (
