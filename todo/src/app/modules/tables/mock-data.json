@@ -1,0 +1,137 @@
+[
+  {
+   "#": 1,
+   "Company name": "JPMorgan Chase",
+   "Location": "United States",
+   "Sales": "$179.93 B",
+   "Profit": "$41.8 B",
+   "Assets": "$3,744.3 B",
+   "MV": "$399.59 B"
+  },
+  {
+   "#": 2,
+   "Company name": "Saudi Arabian Oil Company (Saudi Aramco)",
+   "Location": "Saudi Arabia",
+   "Sales": "$589.47 B",
+   "Profit": "$156.36 B",
+   "Assets": "$660.99 B",
+   "MV": "$2,055.22 B"
+  },
+  {
+   "#": 3,
+   "Company name": "ICBC",
+   "Location": "China",
+   "Sales": "$216.77 B",
+   "Profit": "$52.47 B",
+   "Assets": "$6,116.82 B",
+   "MV": "$203.01 B"
+  },
+  {
+   "#": 4,
+   "Company name": "China Construction Bank",
+   "Location": "China",
+   "Sales": "$203.08 B",
+   "Profit": "$48.25 B",
+   "Assets": "$4,977.48 B",
+   "MV": "$172.99 B"
+  },
+  {
+   "#": 5,
+   "Company name": "Agricultural Bank of China",
+   "Location": "China",
+   "Sales": "$186.14 B",
+   "Profit": "$37.92 B",
+   "Assets": "$5,356.86 B",
+   "MV": "$141.82 B"
+  },
+  {
+   "#": 6,
+   "Company name": "Bank of America",
+   "Location": "United States",
+   "Sales": "$133.84 B",
+   "Profit": "$28.62 B",
+   "Assets": "$3,194.66 B",
+   "MV": "$220.82 B"
+  },
+  {
+   "#": 7,
+   "Company name": "Alphabet",
+   "Location": "United States",
+   "Sales": "$282.85 B",
+   "Profit": "$58.59 B",
+   "Assets": "$369.49 B",
+   "MV": "$1,340.53 B"
+  },
+  {
+   "#": 8,
+   "Company name": "ExxonMobil",
+   "Location": "United States",
+   "Sales": "$393.16 B",
+   "Profit": "$61.69 B",
+   "Assets": "$369.37 B",
+   "MV": "$439.39 B"
+  },
+  {
+   "#": 9,
+   "Company name": "Microsoft",
+   "Location": "United States",
+   "Sales": "$207.59 B",
+   "Profit": "$69.02 B",
+   "Assets": "$380.09 B",
+   "MV": "$2,309.84 B"
+  },
+  {
+   "#": 10,
+   "Company name": "Apple",
+   "Location": "United States",
+   "Sales": "$385.1 B",
+   "Profit": "$94.32 B",
+   "Assets": "$332.16 B",
+   "MV": "$2,746.21 B"
+  },
+  {
+   "#": 11,
+   "Company name": "Shell",
+   "Location": "United Kingdom",
+   "Sales": "$365.89 B",
+   "Profit": "$43.51 B",
+   "Assets": "$429.15 B",
+   "MV": "$205.45 B"
+  },
+  {
+   "#": 12,
+   "Company name": "Bank of China",
+   "Location": "China",
+   "Sales": "$158.23 B",
+   "Profit": "$33.23 B",
+   "Assets": "$4,421.76 B",
+   "MV": "$122.67 B"
+  },
+  {
+   "#": 13,
+   "Company name": "Toyota Motor",
+   "Location": "Japan",
+   "Sales": "$270.49 B",
+   "Profit": "$18.5 B",
+   "Assets": "$542.5 B",
+   "MV": "$188.2 B"
+  },
+  {
+   "#": 14,
+   "Company name": "Samsung Electronics",
+   "Location": "South Korea",
+   "Sales": "$220.07 B",
+   "Profit": "$34.49 B",
+   "Assets": "$348.81 B",
+   "MV": "$334.31 B"
+  },
+  {
+   "#": 15,
+   "Company name": "UnitedHealth Group",
+   "Location": "United States",
+   "Sales": "$335.94 B",
+   "Profit": "$20.7 B",
+   "Assets": "$283.68 B",
+   "MV": "$460.19 B"
+  }
+ ]

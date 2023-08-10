@@ -1,3 +1,80 @@
 :host{
   flex-grow: 1;
+  padding: 20px 150px;
+  height: 100%;
+  overflow: auto;
+
+  @media (max-width: 1245px) {
+    padding: 20px 50px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 10px 20px;
+  }
+}
+
+.company-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.title{
+  text-align: center;
+
+  @media (max-width: 766px) {
+    font-size: 16px;
+  }
+}
+
+.mat-mdc-button.mat-mdc-button-base, .mat-mdc-raised-button.mat-mdc-button-base, .mat-mdc-unelevated-button.mat-mdc-button-base, .mat-mdc-outlined-button.mat-mdc-button-base {
+  @media (max-width: 766px) {
+    height: auto;
+  }
+}
+
+.mdc-button--raised {
+  min-width: auto;
+
+  @media (max-width: 766px) {
+    padding: 4px;
+  }
+}
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+  @media (max-width: 766px) {
+    padding: 0 8px;
+    font-size: 12px;
+    line-height: 110%;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0 6px;
+    line-height: 105%;
+  }
+}
+
+.company-name{
+  word-wrap: break-word;
+}
+
+@media (max-width: 576px) {
+  .mat-mdc-table {
+    table-layout: fixed;
+  }
+
+  .position {
+     width: 10%;
+  }
+
+  .mat-mdc-header-cell {
+    cursor: pointer;
+  }
+}
+
+.collapsed{
+  width: 15px;
+
+  &.mat-mdc-header-cell{
+    writing-mode: vertical-rl;
+  }
 }

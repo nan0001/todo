@@ -8,6 +8,7 @@ import { CoreModule } from './modules/core/core.module';
 import { StoreModule } from '@ngrx/store';
 import { MaterialModule } from './modules/material/material.module';
 import { TodoModule } from './modules/todo/todo.module';
+import { TablesModule } from './modules/tables/tables.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { TodoModule } from './modules/todo/todo.module';
     StoreModule.forRoot({}, {}),
     MaterialModule,
     TodoModule,
+    TablesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

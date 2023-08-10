@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatCheckboxModule,
     MatIconModule,
     DragDropModule,
+    MatTableModule,
   ],
 })
 export class MaterialModule {}
