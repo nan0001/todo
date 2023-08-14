@@ -3,29 +3,33 @@
   <table
     mat-table
     class="mat-elevation-z8 company-table"
-    [dataSource]="tableData">
+    [dataSource]="dataSource">
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef class="position">#</th>
       <td mat-cell *matCellDef="let element" class="position">
         {{ element['#'] }}
       </td>
     </ng-container>
+
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Company name</th>
       <td mat-cell *matCellDef="let element" class="company-name">
         {{ element['Company name'] }}
       </td>
     </ng-container>
+
     <ng-container matColumnDef="location">
       <th mat-header-cell *matHeaderCellDef>Location</th>
       <td mat-cell *matCellDef="let element">{{ element.Location }}</td>
     </ng-container>
+
     <ng-container matColumnDef="sales">
       <th
         mat-header-cell
         *matHeaderCellDef
-        [ngClass]="{ sales: true, collapsed: collapsedColumns['sales'] }"
-        (click)="changeColumns($event)">
+        [appCollapseColumns]="'sales'"
+        [ngClass]="{ collapsed: collapsedColumns['sales'] }"
+        [columnsList]="collapsedColumns">
         Sales, bln
       </th>
       <td
@@ -35,12 +39,14 @@
         {{ element.Sales | currency: 'USD' : 'symbol-narrow' : '1.2-2' }}
       </td>
     </ng-container>
+
     <ng-container matColumnDef="profit">
       <th
         mat-header-cell
         *matHeaderCellDef
-        [ngClass]="{ profit: true, collapsed: collapsedColumns['profit'] }"
-        (click)="changeColumns($event)">
+        [appCollapseColumns]="'profit'"
+        [ngClass]="{ collapsed: collapsedColumns['profit'] }"
+        [columnsList]="collapsedColumns">
         Profit, bln
       </th>
       <td
@@ -50,12 +56,14 @@
         {{ element.Profit | currency: 'USD' : 'symbol-narrow' : '1.2-2' }}
       </td>
     </ng-container>
+
     <ng-container matColumnDef="assets">
       <th
         mat-header-cell
         *matHeaderCellDef
-        [ngClass]="{ assets: true, collapsed: collapsedColumns['assets'] }"
-        (click)="changeColumns($event)">
+        [appCollapseColumns]="'assets'"
+        [ngClass]="{ collapsed: collapsedColumns['assets'] }"
+        [columnsList]="collapsedColumns">
         Assets, bln
       </th>
       <td
@@ -65,23 +73,52 @@
         {{ element.Assets | currency: 'USD' : 'symbol-narrow' : '1.2-2' }}
       </td>
     </ng-container>
-    <ng-container matColumnDef="mv">
+
+    <ng-container matColumnDef="flags">
       <th
         mat-header-cell
         *matHeaderCellDef
-        [ngClass]="{ mv: true, collapsed: collapsedColumns['mv'] }"
-        (click)="changeColumns($event)">
-        Market value, bln
+        [appCollapseColumns]="'flags'"
+        [ngClass]="{ collapsed: collapsedColumns['flags'] }"
+        [columnsList]="collapsedColumns">
+        Flags
       </th>
       <td
         mat-cell
         *matCellDef="let element"
-        [ngClass]="{ collapsed: collapsedColumns['mv'] }">
-        {{ element.MV | currency: 'USD' : 'symbol-narrow' : '1.2-2' }}
+        [ngClass]="{ collapsed: collapsedColumns['flags'] }">
+        <ul class="checkbox-list">
+          <li *ngFor="let flag of element.flags; let i = index">
+            <mat-checkbox
+              [color]="checkboxColors[i]"
+              class="flag-checkbox"
+              [(ngModel)]="flag.checked"
+              (change)="updateItem(element)">
+              {{ flag.name }}
+            </mat-checkbox>
+          </li>
+        </ul>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef class="edit"></th>
+      <td mat-cell *matCellDef="let element" class="edit">
+        <button
+          mat-icon-button
+          aria-label="Edit item"
+          class="btn"
+          (click)="toggleEditPopup(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
+  <ng-container *ngIf="popupState.opened">
+    <app-edit-popup [item]="itemToEdit"></app-edit-popup>
+  </ng-container>
 </ng-container>

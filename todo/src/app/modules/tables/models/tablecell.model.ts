@@ -6,4 +6,10 @@ export interface TablecellInterface {
   Profit: number;
   Assets: number;
   MV: number;
+  flags: TableFlagIntefrace[];
+}
+
+export interface TableFlagIntefrace {
+  name: string;
+  checked: boolean;
 }

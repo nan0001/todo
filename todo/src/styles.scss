@@ -20,6 +20,10 @@ li{
   list-style: none;
 }
 
+// Angular material fixes
+
+// -Todo
+
 .mdc-text-field {
   padding: 0 10px !important;
 }
@@ -59,4 +63,73 @@ li{
   }
 }
 
+// -Tables
 
+.flag-checkbox{
+  .mdc-form-field {
+    @media (max-width: 766px) {
+      font-size: 12px;
+      line-height: 110%;
+    }
+  }
+
+  &.mat-mdc-checkbox .mdc-checkbox{
+    padding: 5px;
+    margin: 0;
+
+    @media (max-width: 766px) {
+      padding: 4px;
+    }
+
+    .mdc-checkbox__native-control {
+      width: 30px;
+      height: 30px;
+
+      @media (max-width: 766px) {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    .mdc-checkbox__background{
+      top: calc((30px - 18px) / 2);
+      left: calc((30px - 18px) / 2);
+
+      @media (max-width: 766px) {
+        top: calc((22px - 14px) / 2);
+        left: calc((22px - 14px) / 2);
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  .mdc-checkbox{
+    flex: auto;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+
+    @media (max-width: 766px) {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .mat-mdc-checkbox-touch-target{
+    height: 30px;
+    width: 30px;
+
+    @media (max-width: 766px) {
+      width: 26px;
+      height: 26px;
+    }
+  }
+}
+
+.btn {
+  &.mat-mdc-icon-button .mat-mdc-button-touch-target{
+    height: 30px;
+    width: 30px;
+  }
+}

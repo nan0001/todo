@@ -13,7 +13,6 @@ export class CrossDirective implements OnInit, OnChanges {
     this.crossTask();
   }
 
-  //Можно ли по-другому?
   public ngOnChanges(): void {
     this.crossTask();
   }
