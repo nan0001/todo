@@ -5,11 +5,17 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class PopupService {
-  public popupOpened$ = new BehaviorSubject(false);
-  private popupOpened = false;
+  private popupState = {
+    multi: false,
+    isOpen: false,
+  };
+  public popupState$ = new BehaviorSubject(this.popupState);
 
-  public togglePopup(): void {
-    this.popupOpened = !this.popupOpened;
-    this.popupOpened$.next(this.popupOpened);
+  public togglePopup(multi = false): void {
+    this.popupState = {
+      multi,
+      isOpen: !this.popupState.isOpen,
+    };
+    this.popupState$.next(this.popupState);
   }
 }

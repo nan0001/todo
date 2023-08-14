@@ -23,23 +23,40 @@ export class DataSourceService {
   );
 
   public updateItem(updatedItem: TablecellInterface): void {
-    const itemIndex = this.tableData.findIndex(
-      val => val['#'] === updatedItem['#']
-    );
+    this.tableData = this.updateTableData(updatedItem);
 
-    if (itemIndex !== -1) {
-      this.tableData[itemIndex] = {
-        ...updatedItem,
-        flags: [...updatedItem.flags],
-      };
-    } else {
-      this.tableData.push(updatedItem);
-    }
+    this.tableDataSrc$.next(this.tableData);
+  }
+
+  public updateMultipleItems(itemsArr: TablecellInterface[]): void {
+    itemsArr.forEach(val => {
+      this.tableData = this.updateTableData(val);
+    });
 
     this.tableDataSrc$.next(this.tableData);
   }
 
   private convertStringValues(val: string): number {
     return parseFloat(val.replace('$', '').replace('B', '').replace(',', ''));
+  }
+
+  private updateTableData(
+    updatedItem: TablecellInterface
+  ): TablecellInterface[] {
+    const newTableData = [...this.tableData];
+    const itemIndex = newTableData.findIndex(
+      val => val['#'] === updatedItem['#']
+    );
+
+    if (itemIndex !== -1) {
+      newTableData[itemIndex] = {
+        ...updatedItem,
+        flags: [...updatedItem.flags],
+      };
+    } else {
+      newTableData.push(updatedItem);
+    }
+
+    return newTableData;
   }
 }

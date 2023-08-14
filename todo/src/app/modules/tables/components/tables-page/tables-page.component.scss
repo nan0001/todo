@@ -130,7 +130,13 @@
   }
 }
 
-.add-btn{
-  position: relative;
-  z-index: 0;
+.btn-container {
+  display: flex;
+  gap: 10px;
+
+  .add-btn,
+  .edit-all-btn{
+    position: relative;
+    z-index: 0;
+  }
 }

@@ -27,7 +27,7 @@
         let i = index
       "
       [formControlName]="flag.key"
-      [checked]="flag.value.value"
+      [indeterminate]="setIndeterminate(i)"
       [color]="checkboxColors[i]"
       class="flag-checkbox">
       {{ flag.key }}
