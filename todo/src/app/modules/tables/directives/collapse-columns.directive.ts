@@ -32,7 +32,7 @@ export class CollapseColumnsDirective {
     }
   }
 
-  collapseColumn(currentKey: string): void {
+  private collapseColumn(currentKey: string): void {
     const numOfColumnsCurrentlyShown = Object.values(this.columnsList).filter(
       val => val === false
     ).length;

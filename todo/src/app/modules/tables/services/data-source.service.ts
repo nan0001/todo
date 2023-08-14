@@ -18,13 +18,9 @@ export class DataSourceService {
       };
     }
   );
-  public tableDataSrc = new BehaviorSubject<TablecellInterface[]>(
+  public tableDataSrc$ = new BehaviorSubject<TablecellInterface[]>(
     this.tableData
   );
-
-  private convertStringValues(val: string): number {
-    return parseFloat(val.replace('$', '').replace('B', '').replace(',', ''));
-  }
 
   public updateItem(updatedItem: TablecellInterface): void {
     const itemIndex = this.tableData.findIndex(
@@ -40,6 +36,10 @@ export class DataSourceService {
       this.tableData.push(updatedItem);
     }
 
-    this.tableDataSrc.next(this.tableData);
+    this.tableDataSrc$.next(this.tableData);
+  }
+
+  private convertStringValues(val: string): number {
+    return parseFloat(val.replace('$', '').replace('B', '').replace(',', ''));
   }
 }

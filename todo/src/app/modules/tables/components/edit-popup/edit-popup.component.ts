@@ -15,7 +15,6 @@ export class EditPopupComponent implements OnInit {
   @Input() itemArrayLength = 0;
 
   public checkboxColors = CHECKBOX_COLORS;
-
   public editForm = this.fb.group({
     name: ['', Validators.required],
     location: ['', Validators.required],
@@ -36,6 +35,25 @@ export class EditPopupComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  public closePopup(): void {
+    this.popupService.togglePopup();
+  }
+
+  public onFormSubmit(): void {
+    if (this.editForm.valid) {
+      const newItem = this.getUpdatedItem(this.item);
+
+      this.dataSourceService.updateItem(newItem);
+      this.closePopup();
+    } else {
+      this.editForm.markAllAsTouched();
+    }
+  }
+
+  private initializeForm(): void {
     if (this.item) {
       this.editForm.controls.name.setValue(this.item['Company name']);
       this.editForm.controls.location.setValue(this.item.Location);
@@ -54,28 +72,8 @@ export class EditPopupComponent implements OnInit {
     }
   }
 
-  public closePopup(): void {
-    this.popupService.togglePopup();
-  }
-
-  public onFormSubmit(): void {
-    if (this.editForm.valid) {
-      if (this.item) {
-        const updatedItem = this.getUpdatedItem(this.item);
-        this.dataSourceService.updateItem(updatedItem);
-        this.popupService.togglePopup();
-      } else {
-        const newItem = this.getUpdatedItem();
-        this.dataSourceService.updateItem(newItem);
-        this.popupService.togglePopup();
-      }
-    } else {
-      this.editForm.markAllAsTouched();
-    }
-  }
-
   private getUpdatedItem(
-    oldItem: TablecellInterface | null = null
+    oldItem: TablecellInterface | null
   ): TablecellInterface {
     const newName = this.editForm.controls.name.value;
     const newLocation = this.editForm.controls.location.value;

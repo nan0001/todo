@@ -29,10 +29,11 @@ export class TablesPageComponent implements OnInit, OnDestroy {
     flags: window.innerWidth < 576 ? true : false,
   };
   public checkboxColors = CHECKBOX_COLORS;
-  public popupState = this.popupService.popupState;
+  public popupOpened = false;
   public itemToEdit: TablecellInterface | null = null;
-  private subscription!: Subscription;
   public dataSource = new MatTableDataSource<TablecellInterface>();
+  private subscription!: Subscription;
+  private popupSubscription!: Subscription;
 
   constructor(
     private popupService: PopupService,
@@ -40,18 +41,22 @@ export class TablesPageComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.subscription = this.dataSourceService.tableDataSrc.subscribe(val => {
+    this.subscription = this.dataSourceService.tableDataSrc$.subscribe(val => {
       this.dataSource.data = val;
+    });
+    this.popupSubscription = this.popupService.popupOpened$.subscribe(val => {
+      this.popupOpened = val;
     });
   }
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.popupSubscription.unsubscribe();
   }
 
   public toggleEditPopup(item: TablecellInterface | null = null): void {
     this.popupService.togglePopup();
-    this.itemToEdit = this.popupState.opened ? item : null;
+    this.itemToEdit = this.popupOpened ? item : null;
   }
 
   public updateItem(item: TablecellInterface): void {

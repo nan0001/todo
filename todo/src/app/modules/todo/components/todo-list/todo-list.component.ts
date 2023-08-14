@@ -16,17 +16,18 @@ import { TodoService } from '../../services/todo.service';
 export class TodoListComponent implements OnInit, OnDestroy {
   @Input() isActiveList = false;
 
-  private subscription!: Subscription;
   public todolist: TodoItemInterface[] = [];
   public listId = '';
   public secondListId: string[] = [];
   public isSortingActive = false;
   public sortOrder: 'asc' | 'desc' = 'asc';
 
+  private subscription!: Subscription;
+
   constructor(private todoservice: TodoService) {}
 
   public ngOnInit(): void {
-    this.subscription = this.todoservice.todolist$.subscribe(list => {
+    this.subscription = this.todoservice.todolistSrc$.subscribe(list => {
       this.todolist = list.filter(val =>
         this.isActiveList ? val.status === 'in progress' : val.status === 'done'
       );
