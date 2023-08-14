@@ -1,5 +1,10 @@
 <ng-container>
-  <h3 class="title">Global Forbes 2000 Top-15</h3>
+  <div class="title-container">
+    <h3 class="title">Global Forbes 2000 Top-15</h3>
+    <button mat-raised-button class="add-btn" (click)="toggleEditPopup()">
+      Add new row
+    </button>
+  </div>
   <table
     mat-table
     class="mat-elevation-z8 company-table"
@@ -119,6 +124,8 @@
   </table>
 
   <ng-container *ngIf="popupState.opened">
-    <app-edit-popup [item]="itemToEdit"></app-edit-popup>
+    <app-edit-popup
+      [item]="itemToEdit"
+      [itemArrayLength]="dataSource.data.length"></app-edit-popup>
   </ng-container>
 </ng-container>

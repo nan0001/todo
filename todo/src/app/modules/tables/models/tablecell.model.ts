@@ -5,7 +5,7 @@ export interface TablecellInterface {
   Sales: number;
   Profit: number;
   Assets: number;
-  MV: number;
+  MV?: number;
   flags: TableFlagIntefrace[];
 }
 

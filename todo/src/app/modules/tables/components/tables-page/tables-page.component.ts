@@ -49,7 +49,7 @@ export class TablesPageComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  public toggleEditPopup(item: TablecellInterface): void {
+  public toggleEditPopup(item: TablecellInterface | null = null): void {
     this.popupService.togglePopup();
     this.itemToEdit = this.popupState.opened ? item : null;
   }

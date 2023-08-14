@@ -12,6 +12,7 @@ import { DataSourceService } from '../../services/data-source.service';
 })
 export class EditPopupComponent implements OnInit {
   @Input() item: TablecellInterface | null = null;
+  @Input() itemArrayLength = 0;
 
   public checkboxColors = CHECKBOX_COLORS;
 
@@ -63,12 +64,19 @@ export class EditPopupComponent implements OnInit {
         const updatedItem = this.getUpdatedItem(this.item);
         this.dataSourceService.updateItem(updatedItem);
         this.popupService.togglePopup();
+      } else {
+        const newItem = this.getUpdatedItem();
+        this.dataSourceService.updateItem(newItem);
+        this.popupService.togglePopup();
       }
-      //else to add new item
+    } else {
+      this.editForm.markAllAsTouched();
     }
   }
 
-  private getUpdatedItem(oldItem: TablecellInterface): TablecellInterface {
+  private getUpdatedItem(
+    oldItem: TablecellInterface | null = null
+  ): TablecellInterface {
     const newName = this.editForm.controls.name.value;
     const newLocation = this.editForm.controls.location.value;
     const newSales = this.editForm.controls.sales.value;
@@ -79,24 +87,24 @@ export class EditPopupComponent implements OnInit {
     const flag3 = this.editForm.controls.flags.controls[3].value;
 
     const updatedItem: TablecellInterface = {
-      ...oldItem,
-      'Company name': newName ? newName : oldItem['Company name'],
-      Location: newLocation ? newLocation : oldItem.Location,
-      Sales: newSales ? newSales : oldItem.Sales,
-      Profit: newProfit ? newProfit : oldItem.Profit,
-      Assets: newAssets ? newAssets : oldItem.Assets,
+      '#': oldItem?.['#'] || this.itemArrayLength + 1,
+      'Company name': newName ? newName : oldItem?.['Company name'] || '',
+      Location: newLocation ? newLocation : oldItem?.Location || '',
+      Sales: newSales ? newSales : oldItem?.Sales || 0,
+      Profit: newProfit ? newProfit : oldItem?.Profit || 0,
+      Assets: newAssets ? newAssets : oldItem?.Assets || 0,
       flags: [
         {
-          ...oldItem.flags[0],
-          checked: flag1 !== null ? flag1 : oldItem.flags[0].checked,
+          name: '1',
+          checked: flag1 !== null ? flag1 : oldItem?.flags[0].checked || false,
         },
         {
-          ...oldItem.flags[1],
-          checked: flag2 !== null ? flag2 : oldItem.flags[1].checked,
+          name: '2',
+          checked: flag2 !== null ? flag2 : oldItem?.flags[1].checked || false,
         },
         {
-          ...oldItem.flags[2],
-          checked: flag3 !== null ? flag3 : oldItem.flags[2].checked,
+          name: '3',
+          checked: flag3 !== null ? flag3 : oldItem?.flags[2].checked || false,
         },
       ],
     };

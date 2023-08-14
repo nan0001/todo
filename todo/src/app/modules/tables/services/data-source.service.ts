@@ -30,10 +30,16 @@ export class DataSourceService {
     const itemIndex = this.tableData.findIndex(
       val => val['#'] === updatedItem['#']
     );
-    this.tableData[itemIndex] = {
-      ...updatedItem,
-      flags: [...updatedItem.flags],
-    };
+
+    if (itemIndex !== -1) {
+      this.tableData[itemIndex] = {
+        ...updatedItem,
+        flags: [...updatedItem.flags],
+      };
+    } else {
+      this.tableData.push(updatedItem);
+    }
+
     this.tableDataSrc.next(this.tableData);
   }
 }
