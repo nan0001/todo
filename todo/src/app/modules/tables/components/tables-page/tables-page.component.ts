@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import {
   TableFlagIntefrace,
   TablecellInterface,
@@ -8,13 +14,16 @@ import { DataSourceService } from '../../services/data-source.service';
 import { CHECKBOX_COLORS } from '../../constants/checkbox-colors.constant';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-tables-page',
   templateUrl: './tables-page.component.html',
   styleUrls: ['./tables-page.component.scss'],
 })
-export class TablesPageComponent implements OnInit, OnDestroy {
+export class TablesPageComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild(MatSort) sort!: MatSort;
+
   public displayedColumns = [
     'checkbox',
     'position',
@@ -49,6 +58,9 @@ export class TablesPageComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
+    this.dataSource.sortingDataAccessor = (elem, columnName) => {
+      return this.getValueForSorting(elem, columnName);
+    };
     this.subscription = this.dataSourceService.tableDataSrc$.subscribe(val => {
       this.dataSource.data = val;
       this.dataSource.data.forEach(item => {
@@ -61,6 +73,10 @@ export class TablesPageComponent implements OnInit, OnDestroy {
       this.isPopupOpened = val.multi ? false : val.isOpen;
       this.isMultipleEditOpened = val.multi && val.isOpen;
     });
+  }
+
+  public ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
   }
 
   public ngOnDestroy(): void {
@@ -123,6 +139,30 @@ export class TablesPageComponent implements OnInit, OnDestroy {
 
     if (itemIndex !== -1 && item !== this.checkedItems[itemIndex]) {
       this.checkedItems.splice(itemIndex, 1, item);
+    }
+  }
+
+  private getValueForSorting(
+    elem: TablecellInterface,
+    columnName: string
+  ): string | number {
+    switch (columnName) {
+      case 'position':
+        return elem['#'];
+      case 'name':
+        return elem['Company name'];
+      case 'location':
+        return elem.Location;
+      case 'sales':
+        return elem.Sales;
+      case 'profit':
+        return elem.Profit;
+      case 'assets':
+        return elem.Assets;
+      case 'flags':
+        return elem.flags.reduce((acc, val) => (acc += Number(val.checked)), 0);
+      default:
+        return '';
     }
   }
 }
