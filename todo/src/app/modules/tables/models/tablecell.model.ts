@@ -7,6 +7,8 @@ export interface TablecellInterface {
   Assets: number;
   MV?: number;
   flags: TableFlagIntefrace[];
+  start?: Date;
+  end?: Date;
 }
 
 export interface TableFlagIntefrace {

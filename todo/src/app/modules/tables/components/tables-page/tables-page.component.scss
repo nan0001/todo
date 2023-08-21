@@ -15,7 +15,20 @@
 
 .company-table {
   width: 100%;
+  box-shadow: none;
+  transition: margin-top 1s;
+
+  &.filters_hidden {
+    margin-top: -56px;
+  }
+}
+
+.table {
+  height: fit-content;
+  width: fit-content;
   margin-top: 20px;
+  overflow-x: hidden;
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 .title-container {
@@ -138,5 +151,41 @@
   .edit-all-btn{
     position: relative;
     z-index: 0;
+  }
+}
+
+.filters{
+  th{
+    padding: 0 4px;
+  }
+}
+
+.sales,
+.assets,
+.profit{
+  display: flex;
+  flex-direction: column;
+
+  &__inputs{
+    display: flex;
+  }
+}
+
+.reset-btn{
+  &.mdc-button{
+    font-size: 12px;
+  }
+}
+
+.filter-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+
+  &.mat-mdc-raised-button>.mat-icon {
+    margin-left: 0;
+    margin-right: 0;
+    color: gray;
   }
 }

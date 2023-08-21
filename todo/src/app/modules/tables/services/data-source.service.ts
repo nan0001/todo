@@ -15,6 +15,8 @@ export class DataSourceService {
         Profit: this.convertStringValues(val.Profit),
         Assets: this.convertStringValues(val.Assets),
         MV: this.convertStringValues(val.MV),
+        start: new Date(val.start),
+        end: new Date(val.end),
       };
     }
   );
