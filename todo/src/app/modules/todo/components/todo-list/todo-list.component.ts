@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { TodoService } from '../../services/todo.service';
 import { Subscription } from 'rxjs';
-import { TodoItemInterface } from '../../models/todo-item.model';
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { TodoItemInterface } from '../../models/todo-item.model';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -16,17 +16,18 @@ import {
 export class TodoListComponent implements OnInit, OnDestroy {
   @Input() isActiveList = false;
 
-  private subscription!: Subscription;
   public todolist: TodoItemInterface[] = [];
   public listId = '';
   public secondListId: string[] = [];
   public isSortingActive = false;
   public sortOrder: 'asc' | 'desc' = 'asc';
 
+  private subscription!: Subscription;
+
   constructor(private todoservice: TodoService) {}
 
   public ngOnInit(): void {
-    this.subscription = this.todoservice.todolist$.subscribe(list => {
+    this.subscription = this.todoservice.todolistSrc$.subscribe(list => {
       this.todolist = list.filter(val =>
         this.isActiveList ? val.status === 'in progress' : val.status === 'done'
       );
@@ -123,6 +124,9 @@ export class TodoListComponent implements OnInit, OnDestroy {
       targetElem,
       secondList
     );
+    const framesCount = 30;
+    const stepX = Math.abs(destinationX) / framesCount;
+    const stepY = Math.abs(destinationY - initialY) / framesCount;
 
     const moveBox = () => {
       targetElem.style.position = 'absolute';
@@ -131,14 +135,15 @@ export class TodoListComponent implements OnInit, OnDestroy {
       targetElem.style.top = topStart + 'px';
 
       if (Math.abs(leftStart) < Math.abs(destinationX)) {
-        leftStart = destinationX > 0 ? leftStart + 5 : leftStart - 5;
+        leftStart = destinationX > 0 ? leftStart + stepX : leftStart - stepX;
       }
 
       if (
         (topStart < destinationY && initialY < destinationY) ||
         (topStart > destinationY && initialY > destinationY)
       ) {
-        topStart = initialY < destinationY ? topStart + 5 : topStart - 5;
+        topStart =
+          initialY < destinationY ? topStart + stepY : topStart - stepY;
       }
 
       if (

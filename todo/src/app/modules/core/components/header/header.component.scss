@@ -1,9 +1,25 @@
 .wrapper{
   padding: 20px 150px;
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 1245px) {
+    padding: 20px 50px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 10px 20px;
+  }
 }
 
 .title {
   font-weight: 600;
   margin: 0;
   color: gray;
+  font-size: 20px;
+  text-decoration: none;
+
+  @media (max-width: 766px) {
+    font-size: 16px;
+  }
 }

@@ -3,6 +3,18 @@
   color: lightgray;
   font-size: 14px;
 
+  @media (max-width: 1245px) {
+    padding: 20px 50px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 10px 20px;
+  }
+
+  @media (max-width: 766px) {
+    font-size: 10px;
+  }
+
   .link {
     color: lightgray;
     outline: none;

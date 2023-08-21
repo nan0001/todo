@@ -1,0 +1,347 @@
+<ng-container>
+  <div class="title-container">
+    <h3 class="title">Global Forbes 2000 Top-15</h3>
+    <div class="btn-container">
+      <button
+        mat-raised-button
+        class="edit-all-btn"
+        (click)="toggleEditPopup(null, true)"
+        [disabled]="checkedItems.length === 0">
+        Edit checked items
+      </button>
+      <button mat-raised-button class="add-btn" (click)="toggleEditPopup()">
+        Add new row
+      </button>
+      <button mat-raised-button class="filter-btn" (click)="toggleFilters()">
+        <mat-icon>filter_alt</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="table">
+    <table
+      mat-table
+      class="mat-elevation-z8 company-table"
+      [ngClass]="{ filters_hidden: !areFiltersOpen }"
+      [dataSource]="dataSource"
+      matSort>
+      <ng-container matColumnDef="checkbox">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            [checked]="allChecked"
+            [indeterminate]="checkedItems.length > 0 && !allChecked"
+            (change)="setAllChecked($event.checked)"
+            class="flag-checkbox">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox
+            (change)="checkItem(element)"
+            [checked]="isElemInChecked(element)"
+            class="flag-checkbox">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef class="position" mat-sort-header>
+          #
+        </th>
+        <td mat-cell *matCellDef="let element" class="position">
+          {{ element['#'] }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Company name</th>
+        <td mat-cell *matCellDef="let element" class="company-name">
+          {{ element['Company name'] }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+        <td mat-cell *matCellDef="let element">{{ element.Location }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="sales">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [appCollapseColumns]="'sales'"
+          [ngClass]="{ collapsed: collapsedColumns['sales'] }"
+          [columnsList]="collapsedColumns"
+          mat-sort-header>
+          Sales, bln
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [ngClass]="{ collapsed: collapsedColumns['sales'] }">
+          {{ element.Sales | currency: 'USD' : 'symbol-narrow' : '1.2-2' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="profit">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [appCollapseColumns]="'profit'"
+          [ngClass]="{ collapsed: collapsedColumns['profit'] }"
+          [columnsList]="collapsedColumns"
+          mat-sort-header>
+          Profit, bln
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [ngClass]="{ collapsed: collapsedColumns['profit'] }">
+          {{ element.Profit | currency: 'USD' : 'symbol-narrow' : '1.2-2' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="assets">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [appCollapseColumns]="'assets'"
+          [ngClass]="{ collapsed: collapsedColumns['assets'] }"
+          [columnsList]="collapsedColumns"
+          mat-sort-header>
+          Assets, bln
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [ngClass]="{ collapsed: collapsedColumns['assets'] }">
+          {{ element.Assets | currency: 'USD' : 'symbol-narrow' : '1.2-2' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="start">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Start</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.start | date: 'mediumDate' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="end">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>End</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.end | date: 'mediumDate' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="flags">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [appCollapseColumns]="'flags'"
+          [ngClass]="{ collapsed: collapsedColumns['flags'] }"
+          [columnsList]="collapsedColumns"
+          mat-sort-header>
+          Flags
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [ngClass]="{ collapsed: collapsedColumns['flags'] }">
+          <ul class="checkbox-list">
+            <li *ngFor="let flag of element.flags; let i = index">
+              <mat-checkbox
+                [color]="checkboxColors[i]"
+                class="flag-checkbox"
+                [checked]="flag.checked"
+                (change)="updateItemFlag(element, i, flag)">
+                {{ flag.name }}
+              </mat-checkbox>
+            </li>
+          </ul>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef class="edit"></th>
+        <td mat-cell *matCellDef="let element" class="edit">
+          <button
+            mat-icon-button
+            aria-label="Edit item"
+            class="btn"
+            (click)="toggleEditPopup(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="reset-btn">
+        <th mat-header-cell *matHeaderCellDef [attr.colspan]="2">
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            (click)="resetFilters()"
+            class="reset-btn">
+            Reset filters
+          </button>
+        </th>
+      </ng-container>
+
+      <ng-container matColumnDef="search">
+        <th mat-header-cell *matHeaderCellDef [attr.colspan]="2">
+          <div class="search-container">
+            <mat-form-field class="search">
+              <mat-label>Search</mat-label>
+              <input
+                matInput
+                type="text"
+                [formControl]="filtersForm.controls.search"
+                (input)="onFiltersChange()" />
+            </mat-form-field>
+          </div>
+        </th>
+      </ng-container>
+
+      <ng-container matColumnDef="sales-inp">
+        <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+          <div class="sales">
+            <div class="sales__inputs">
+              <mat-form-field>
+                <mat-select [formControl]="filtersForm.controls.salesCompare">
+                  <mat-option value="less"><=</mat-option>
+                  <mat-option value="more">>=</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Sales, USD bln</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  [formControl]="filtersForm.controls.sales"
+                  (input)="onFiltersChange()" />
+              </mat-form-field>
+            </div>
+          </div>
+        </th>
+      </ng-container>
+
+      <ng-container matColumnDef="profit-inp">
+        <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+          <div class="profit">
+            <div class="profit__inputs">
+              <mat-form-field>
+                <mat-select [formControl]="filtersForm.controls.profitCompare">
+                  <mat-option value="less"><=</mat-option>
+                  <mat-option value="more">>=</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Profit, USD bln</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  [formControl]="filtersForm.controls.profit"
+                  (input)="onFiltersChange()" />
+              </mat-form-field>
+            </div>
+          </div>
+        </th>
+      </ng-container>
+
+      <ng-container matColumnDef="assets-inp">
+        <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+          <div class="assets">
+            <div class="assets__inputs">
+              <mat-form-field>
+                <mat-select [formControl]="filtersForm.controls.assetsCompare">
+                  <mat-option value="less"><=</mat-option>
+                  <mat-option value="more">>=</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Assets, USD bln</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  [formControl]="filtersForm.controls.assets"
+                  (input)="onFiltersChange()" />
+              </mat-form-field>
+            </div>
+          </div>
+        </th>
+      </ng-container>
+
+      <ng-container matColumnDef="date-inp">
+        <th mat-header-cell *matHeaderCellDef [attr.colspan]="2">
+          <div class="date">
+            <mat-form-field>
+              <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input
+                [formGroup]="filtersForm.controls.date"
+                [rangePicker]="picker">
+                <input
+                  matStartDate
+                  formControlName="start"
+                  placeholder="Start date"
+                  (dateChange)="onFiltersChange()" />
+                <input
+                  matEndDate
+                  formControlName="end"
+                  placeholder="End date"
+                  (dateChange)="onFiltersChange()" />
+              </mat-date-range-input>
+              <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+          </div>
+        </th>
+      </ng-container>
+
+      <ng-container matColumnDef="flags-select">
+        <th mat-header-cell *matHeaderCellDef [attr.colspan]="2">
+          <div class="flags-container">
+            <mat-form-field>
+              <mat-label>Flags</mat-label>
+              <mat-select
+                multiple
+                [formControl]="filtersForm.controls.flags"
+                (selectionChange)="onFiltersChange()">
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </th>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        class="filters"
+        *matHeaderRowDef="[
+          'reset-btn',
+          'search',
+          'sales-inp',
+          'profit-inp',
+          'assets-inp',
+          'date-inp',
+          'flags-select'
+        ]"
+        [formGroup]="filtersForm"
+        class="filters"></tr>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <ng-container *ngIf="isPopupOpened">
+    <app-edit-popup
+      [items]="itemToEdit"
+      [itemArrayLength]="dataSource.data.length"></app-edit-popup>
+  </ng-container>
+  <ng-container *ngIf="isMultipleEditOpened">
+    <app-edit-popup [items]="checkedItems" [multi]="true"></app-edit-popup>
+  </ng-container>
+</ng-container>
