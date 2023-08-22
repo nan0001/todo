@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Item1",
+    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim adipisci amet esse numquam.",
+    "subitems":[
+      {
+        "name": "Sub-item 1 from item 1"
+      },
+      {
+        "name": "Sub-item 2 from item 1"
+      },
+      {
+        "name": "Sub-item 3 from item 1"
+      }
+    ]
+  },
+  {
+    "name": "Item2",
+    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim adipisci amet esse numquam.",
+    "subitems":[
+      {
+        "name": "Sub-item 1 from item 2"
+      },
+      {
+        "name": "Sub-item 2 from item 2"
+      },
+      {
+        "name": "Sub-item 3 from item 2"
+      }
+    ]
+  },
+  {
+    "name": "Item3",
+    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim adipisci amet esse numquam.",
+    "subitems":[
+      {
+        "name": "Sub-item 1 from item 3"
+      },
+      {
+        "name": "Sub-item 2 from item 3"
+      },
+      {
+        "name": "Sub-item 3 from item 3"
+      }
+    ]
+  },
+  {
+    "name": "Item4",
+    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim adipisci amet esse numquam.",
+    "subitems":[
+      {
+        "name": "Sub-item 1 from item 4"
+      },
+      {
+        "name": "Sub-item 2 from item 4"
+      },
+      {
+        "name": "Sub-item 3 from item 4"
+      }
+    ]
+  }
+]
