@@ -1,0 +1,6 @@
+<h3>Expandable table</h3>
+<ul class="table" *ngIf="data$ | async as data" cdkDropListGroup>
+  <li *ngFor="let item of data">
+    <app-item [item]="item"></app-item>
+  </li>
+</ul>

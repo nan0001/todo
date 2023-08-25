@@ -1,61 +1,88 @@
 [
   {
-    "name": "Item1",
-    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim adipisci amet esse numquam.",
-    "subitems":[
+    "singer": "Shakira",
+    "album":"Laundry Service",
+    "img":"https://upload.wikimedia.org/wikipedia/en/5/5c/Laundry_Service_cover.png",
+    "songs":[
       {
-        "name": "Sub-item 1 from item 1"
+        "name": "Whenever, Wherever"
       },
       {
-        "name": "Sub-item 2 from item 1"
+        "name": "Te Dejo Madrid"
       },
       {
-        "name": "Sub-item 3 from item 1"
+        "name": "Underneath Your Clothes"
+      },
+      {
+        "name": "Objection (Tango)"
+      },
+      {
+        "name": "Que Me Quedes Tú"
+      },
+      {
+        "name": "The One"
       }
     ]
   },
   {
-    "name": "Item2",
-    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim adipisci amet esse numquam.",
-    "subitems":[
+    "singer": " Beyoncé",
+    "album":"I Am... Sasha Fierce",
+    "img":"https://upload.wikimedia.org/wikipedia/en/9/96/I_Am..._Sasha_Fierce.png",
+    "songs":[
       {
-        "name": "Sub-item 1 from item 2"
+        "name": "If I Were a Boy"
       },
       {
-        "name": "Sub-item 2 from item 2"
+        "name": "Single Ladies (Put a Ring on It)"
       },
       {
-        "name": "Sub-item 3 from item 2"
+        "name": "Diva"
+      },
+      {
+        "name": "Halo"
+      },
+      {
+        "name": "Ego"
+      },
+      {
+        "name": "Sweet Dreams"
+      },
+      {
+        "name": "Broken-Hearted Girl"
+      },
+      {
+        "name": "Video Phone"
+      },
+      {
+        "name": "Why Don't You Love Me"
       }
     ]
   },
   {
-    "name": "Item3",
-    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim adipisci amet esse numquam.",
-    "subitems":[
+    "singer": "Rihanna",
+    "album":"Loud",
+    "img":"https://upload.wikimedia.org/wikipedia/en/d/d1/Rihanna_-_Loud.png",
+    "songs":[
       {
-        "name": "Sub-item 1 from item 3"
+        "name": "Only Girl (In the World)"
       },
       {
-        "name": "Sub-item 2 from item 3"
+        "name": "What's My Name?"
       },
       {
-        "name": "Sub-item 3 from item 3"
-      }
-    ]
-  },
-  {
-    "name": "Item4",
-    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim adipisci amet esse numquam.",
-    "subitems":[
-      {
-        "name": "Sub-item 1 from item 4"
+        "name": "Raining Men"
       },
       {
-        "name": "Sub-item 2 from item 4"
+        "name": "S&M"
       },
       {
-        "name": "Sub-item 3 from item 4"
+        "name": "Man Down"
+      },
+      {
+        "name": "California King Bed"
+      },
+      {
+        "name": "Cheers (Drink to That)"
       }
     ]
   }

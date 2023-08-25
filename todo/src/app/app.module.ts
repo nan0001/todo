@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { MaterialModule } from './modules/material/material.module';
 import { TodoModule } from './modules/todo/todo.module';
 import { TablesModule } from './modules/tables/tables.module';
+import { ExpandableTableModule } from './modules/expandable-table/expandable-table.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { TablesModule } from './modules/tables/tables.module';
     MaterialModule,
     TodoModule,
     TablesModule,
+    ExpandableTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
