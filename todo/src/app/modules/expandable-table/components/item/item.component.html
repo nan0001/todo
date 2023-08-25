@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <div class="main-block" (click)="toggleList()">
+    <app-album-image [src]="item.img"></app-album-image>
+    <app-album-name
+      [singer]="item.singer"
+      [album]="item.album"></app-album-name>
+  </div>
+  <div
+    class="expandable"
+    *ngIf="isExpanded"
+    cdkDropList
+    [cdkDropListData]="item.songs"
+    (cdkDropListDropped)="drop($event)">
+    <ul class="songs-list">
+      <li *ngFor="let subitem of item.songs; let i = index" cdkDrag>
+        <p>{{ i + 1 }}. {{ subitem.name }}</p>
+      </li>
+    </ul>
+  </div>
+</div>

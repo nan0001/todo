@@ -1,0 +1,89 @@
+[
+  {
+    "singer": "Shakira",
+    "album":"Laundry Service",
+    "img":"https://upload.wikimedia.org/wikipedia/en/5/5c/Laundry_Service_cover.png",
+    "songs":[
+      {
+        "name": "Whenever, Wherever"
+      },
+      {
+        "name": "Te Dejo Madrid"
+      },
+      {
+        "name": "Underneath Your Clothes"
+      },
+      {
+        "name": "Objection (Tango)"
+      },
+      {
+        "name": "Que Me Quedes Tú"
+      },
+      {
+        "name": "The One"
+      }
+    ]
+  },
+  {
+    "singer": " Beyoncé",
+    "album":"I Am... Sasha Fierce",
+    "img":"https://upload.wikimedia.org/wikipedia/en/9/96/I_Am..._Sasha_Fierce.png",
+    "songs":[
+      {
+        "name": "If I Were a Boy"
+      },
+      {
+        "name": "Single Ladies (Put a Ring on It)"
+      },
+      {
+        "name": "Diva"
+      },
+      {
+        "name": "Halo"
+      },
+      {
+        "name": "Ego"
+      },
+      {
+        "name": "Sweet Dreams"
+      },
+      {
+        "name": "Broken-Hearted Girl"
+      },
+      {
+        "name": "Video Phone"
+      },
+      {
+        "name": "Why Don't You Love Me"
+      }
+    ]
+  },
+  {
+    "singer": "Rihanna",
+    "album":"Loud",
+    "img":"https://upload.wikimedia.org/wikipedia/en/d/d1/Rihanna_-_Loud.png",
+    "songs":[
+      {
+        "name": "Only Girl (In the World)"
+      },
+      {
+        "name": "What's My Name?"
+      },
+      {
+        "name": "Raining Men"
+      },
+      {
+        "name": "S&M"
+      },
+      {
+        "name": "Man Down"
+      },
+      {
+        "name": "California King Bed"
+      },
+      {
+        "name": "Cheers (Drink to That)"
+      }
+    ]
+  }
+]
