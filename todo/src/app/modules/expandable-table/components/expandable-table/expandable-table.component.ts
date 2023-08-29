@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-expandable-table',
@@ -10,5 +11,12 @@ import { DataService } from '../../services/data.service';
 export class ExpandableTableComponent {
   public data$ = this.dataService.getData();
 
-  constructor(private dataService: DataService) {}
+  public inputsForm = this.formBuilder.group({
+    value: ['1234'.split('')],
+  });
+
+  constructor(
+    private dataService: DataService,
+    private formBuilder: FormBuilder
+  ) {}
 }

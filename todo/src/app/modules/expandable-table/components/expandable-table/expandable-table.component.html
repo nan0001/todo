@@ -1,4 +1,8 @@
 <h3>Expandable table</h3>
+<form [formGroup]="inputsForm">
+  <app-custom-input formControlName="value"></app-custom-input>
+</form>
+
 <ul class="table" *ngIf="data$ | async as data" cdkDropListGroup>
   <li *ngFor="let item of data">
     <app-item [item]="item"></app-item>

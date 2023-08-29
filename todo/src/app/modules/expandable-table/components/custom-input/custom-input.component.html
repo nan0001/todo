@@ -1,0 +1,12 @@
+<div class="input-wrapper">
+  <input
+    *ngFor="let id of [0, 1, 2, 3]"
+    type="number"
+    [id]="'input-' + id"
+    [value]="value[id]"
+    maxlength="1"
+    (input)="onInput($event)"
+    (keyup)="onKeyDown($event)"
+    (paste)="onPaste($event)"
+    (focus)="onFocus($event)" />
+</div>
