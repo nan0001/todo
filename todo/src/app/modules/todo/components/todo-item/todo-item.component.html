@@ -18,7 +18,8 @@
         aria-label="Edit item"
         class="btn"
         (click)="editItem(item)"
-        type="button">
+        type="button"
+        id="edit-btn">
         <mat-icon>done</mat-icon>
       </button>
       <button
@@ -26,7 +27,8 @@
         aria-label="Edit item"
         class="btn"
         (click)="enterEditMode()"
-        type="button">
+        type="button"
+        id="cancel-edit-btn">
         <mat-icon>cancel</mat-icon>
       </button>
     </form>
@@ -36,7 +38,8 @@
     mat-icon-button
     aria-label="Edit item"
     class="btn"
-    (click)="enterEditMode()">
+    (click)="enterEditMode()"
+    id="enter-edit-btn">
     <mat-icon>edit</mat-icon>
   </button>
   <button
@@ -44,6 +47,7 @@
     mat-icon-button
     aria-label="Remove item"
     class="btn"
+    id="remove-btn"
     (click)="removeItem(item)">
     <mat-icon>backspace</mat-icon>
   </button>
