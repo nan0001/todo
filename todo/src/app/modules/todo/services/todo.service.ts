@@ -19,17 +19,18 @@ export class TodoService {
   }
 
   public changeItemStatus(item: TodoItemInterface): void {
-    item.status === 'done'
-      ? (item.status = 'in progress')
-      : (item.status = 'done');
+    item.status = item.status === 'done' ? 'in progress' : 'done';
 
     this.todolistSrc$.next([...this.todolist]);
   }
 
   public removeItem(item: TodoItemInterface): void {
     const itemIndex = this.todolist.findIndex(val => val === item);
-    this.todolist.splice(itemIndex, 1);
-    this.todolistSrc$.next([...this.todolist]);
+
+    if (itemIndex !== -1) {
+      this.todolist.splice(itemIndex, 1);
+      this.todolistSrc$.next([...this.todolist]);
+    }
   }
 
   public editItem(item: TodoItemInterface, newValue: string): void {

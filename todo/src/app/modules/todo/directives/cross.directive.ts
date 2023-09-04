@@ -1,23 +1,23 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, HostBinding, Input, OnChanges } from '@angular/core';
 import { TodoItemInterface } from '../models/todo-item.model';
 
 @Directive({
   selector: '[appCross]',
 })
-export class CrossDirective implements OnInit {
+export class CrossDirective implements OnChanges {
   @Input() appCross: TodoItemInterface['status'] | '' = '';
 
-  constructor(private elemRef: ElementRef) {}
+  @HostBinding('style.textDecoration') textDecoration: string | null = null;
 
-  public ngOnInit(): void {
+  public ngOnChanges(): void {
     this.crossTask();
   }
 
   private crossTask(): void {
     if (this.appCross === 'done') {
-      this.elemRef.nativeElement.style.textDecoration = 'line-through';
+      this.textDecoration = 'line-through';
     } else {
-      this.elemRef.nativeElement.style.textDecoration = null;
+      this.textDecoration = null;
     }
   }
 }

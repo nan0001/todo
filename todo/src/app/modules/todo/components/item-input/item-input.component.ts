@@ -9,7 +9,11 @@ import { TodoService } from '../../services/todo.service';
   styleUrls: ['./item-input.component.scss'],
 })
 export class ItemInputComponent {
-  public itemInput = new FormControl('Feed the cat', [Validators.required]);
+  public itemInput = new FormControl('Feed the cat', [
+    Validators.required,
+    Validators.minLength(2),
+    Validators.maxLength(15),
+  ]);
 
   constructor(private todoservice: TodoService) {}
 
