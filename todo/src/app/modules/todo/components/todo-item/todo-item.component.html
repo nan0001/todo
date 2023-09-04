@@ -5,7 +5,7 @@
     color="primary"
     [checked]="item.status === 'done'"
     [appCross]="item.status"
-    (change)="changeItemStatus(item, $event)"
+    (change)="changeItemStatus(item)"
     >{{ item.task }}</mat-checkbox
   >
   <ng-template #editInput>

@@ -1,6 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Host,
+  ElementRef,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 import { TodoItemInterface } from '../../models/todo-item.model';
 import { TodoService } from '../../services/todo.service';
 
@@ -18,24 +25,25 @@ export class TodoItemComponent implements OnInit {
 
   public editMode = false;
   public editForm = this.fb.group({
-    task: ['', Validators.required],
+    task: [
+      '',
+      [Validators.required, Validators.minLength(2), Validators.maxLength(15)],
+    ],
   });
 
   constructor(
     private todoservice: TodoService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    @Host() private elementRef: ElementRef<HTMLElement>
   ) {}
 
   public ngOnInit(): void {
     this.editForm.controls.task.setValue(this.item?.task);
   }
 
-  public changeItemStatus(
-    item: TodoItemInterface,
-    event: MatCheckboxChange
-  ): void {
+  public changeItemStatus(item: TodoItemInterface): void {
     const eventDescription = {
-      element: event.source._elementRef.nativeElement,
+      element: this.elementRef.nativeElement, //еще работает через template variable на ng-container
       item,
     };
     this.checkboxChecked.emit(eventDescription);
@@ -51,8 +59,9 @@ export class TodoItemComponent implements OnInit {
   }
 
   public editItem(item: TodoItemInterface): void {
-    if (this.editForm.controls.task.value) {
-      this.todoservice.editItem(item, this.editForm.controls.task.value);
+    if (this.editForm.controls.task.valid) {
+      const newValue = this.editForm.controls.task.value || '';
+      this.todoservice.editItem(item, newValue);
       this.enterEditMode();
     } else {
       this.editForm.controls.task.markAsTouched();
