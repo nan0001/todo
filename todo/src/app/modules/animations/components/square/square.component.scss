@@ -1,0 +1,17 @@
+.square {
+  width: 150px;
+  height: 150px;
+  background-color: blue;
+
+  &__container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+}
+
+.btn{
+  width: fit-content;
+  height: 20px;
+  margin: auto;
+}
