@@ -1,0 +1,4 @@
+<div class="square__container">
+  <button class="btn" (click)="toggleAnimation()">Animate</button>
+  <div class="square" [@rotate]="isMoving ? 'rotated' : 'straight'"></div>
+</div>

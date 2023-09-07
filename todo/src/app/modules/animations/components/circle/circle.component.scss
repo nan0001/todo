@@ -1,0 +1,19 @@
+.circle {
+  width: 150px;
+  height: 150px;
+  background-color: cadetblue;
+  border-radius: 50%;
+
+  &__container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    height: 150px;
+  }
+}
+
+.btn{
+  width: fit-content;
+  height: 20px;
+  align-self: center;
+}

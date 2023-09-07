@@ -10,6 +10,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { TodoModule } from './modules/todo/todo.module';
 import { TablesModule } from './modules/tables/tables.module';
 import { ExpandableTableModule } from './modules/expandable-table/expandable-table.module';
+import { AnimationsModule } from './modules/animations/animations.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { ExpandableTableModule } from './modules/expandable-table/expandable-tab
     TodoModule,
     TablesModule,
     ExpandableTableModule,
+    AnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
